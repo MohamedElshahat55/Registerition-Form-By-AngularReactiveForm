@@ -27,16 +27,23 @@ export class AppComponent {
         region: new FormControl(null, [Validators.required]),
         postalCode: new FormControl(null, [Validators.required]),
       }),
-      skills: new FormArray([
-        new FormControl(null, [Validators.required]),
-        new FormControl(null, [Validators.required]),
-        new FormControl(null, [Validators.required]),
-        new FormControl(null, [Validators.required]),
-      ]),
+      skills: new FormArray([new FormControl(null, [Validators.required])]),
+      experience: new FormArray([new FormControl(null, [Validators.required])]),
     });
   }
 
   onSubmit() {
     console.log(this.registerForm);
+  }
+
+  addSkills() {
+    (<FormArray>this.registerForm.get("skills")).push(
+      new FormControl(null, [Validators.required])
+    );
+  }
+
+  deleteSkill(i) {
+    console.log(i);
+    (<FormArray>this.registerForm.get("skills")).removeAt(i);
   }
 }
