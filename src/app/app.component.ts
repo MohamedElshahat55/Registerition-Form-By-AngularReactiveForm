@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { CustomValidation } from "./validators/noSpaceAllowed.validator";
 
 @Component({
   selector: "app-root",
@@ -14,8 +15,14 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      firstName: new FormControl(null, [Validators.required]),
-      lastName: new FormControl(null, [Validators.required]),
+      firstName: new FormControl(null, [
+        Validators.required,
+        CustomValidation.noSpaceAllowed,
+      ]),
+      lastName: new FormControl(null, [
+        Validators.required,
+        CustomValidation.noSpaceAllowed,
+      ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       username: new FormControl(null),
       dob: new FormControl(null),
