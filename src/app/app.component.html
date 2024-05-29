@@ -90,13 +90,13 @@
     <button type="button"  class="btn-add-delete" style="cursor: pointer;" (click)="addSkills()">Add Skills</button>
 
     <!--HTML for Experience Form Array -->
-    <div class="input-box" formArrayNam="experience">
-      <div class="experience" *ngFor="let control of registerForm.get('experience')['controls'];let i = index">
-        <label>Experience</label>
-        <input type="text" placeholder="Company Name" [formControlName]="i" />
+    <div class="input-box" formArrayName="experiences">
+      <div class="experience" *ngFor="let ex of registerForm.get('experiences')['controls'];let i = index" [formGroupName]="i">
+        <label>Experience {{i + 1 }}</label>
+        <input type="text" placeholder="Company Name"  formControlName="company"/>
         <div class="column">
           <div class="select-box">
-            <select [formControlName]="i">
+            <select formControlName="position">
               <option hidden>Position</option>
               <option>Junior Developer</option>
               <option>Software Developer</option>
@@ -104,16 +104,16 @@
               <option>Team Lead</option>
             </select>
           </div>
-          <input type="number" placeholder="Experience" [formControlName]="i"/>
+          <input type="number" placeholder="Experience" formControlName="totalOfEx"/>
         </div>
         <div class="column">
-          <input type="date" placeholder="Start Date" [formControlName]="i" />
-          <input type="date" placeholder="End Date" [formControlName]="i" />
+          <input type="date" placeholder="Start Date" formControlName="sd" />
+          <input type="date" placeholder="End Date" formControlName="ed" />
         </div>
-        <button type="button" class="btn-add-delete">Delete Experience</button>
+        <button type="button" class="btn-add-delete" (click)="deleteExperience(i)">Delete Experience</button>
       </div>
     </div>
-    <button type="button" class="btn-add-delete">Add Experience</button>
+    <button type="button" class="btn-add-delete" (click)="addExpereience()">Add Experience</button>
 
     <input type="submit"  value="Submit" class="submit-btn"> 
     <!-- [disabled]="!reactiveForm.valid" -->

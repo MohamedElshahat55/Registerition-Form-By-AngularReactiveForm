@@ -28,7 +28,7 @@ export class AppComponent {
         postalCode: new FormControl(null, [Validators.required]),
       }),
       skills: new FormArray([new FormControl(null, [Validators.required])]),
-      experience: new FormArray([new FormControl(null, [Validators.required])]),
+      experiences: new FormArray([]),
     });
   }
 
@@ -43,7 +43,22 @@ export class AppComponent {
   }
 
   deleteSkill(i) {
-    console.log(i);
     (<FormArray>this.registerForm.get("skills")).removeAt(i);
+  }
+
+  addExpereience() {
+    const formGroup = new FormGroup({
+      company: new FormControl(null, [Validators.required]),
+      position: new FormControl(null, [Validators.required]),
+      totalOfEx: new FormControl(null, [Validators.required]),
+      sd: new FormControl(null, [Validators.required]),
+      ed: new FormControl(null, [Validators.required]),
+    });
+
+    (<FormArray>this.registerForm.get("experiences")).push(formGroup);
+  }
+
+  deleteExperience(index: number) {
+    (<FormArray>this.registerForm.get("experiences")).removeAt(index);
   }
 }
