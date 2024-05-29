@@ -23,6 +23,7 @@
     <div class="column">
       <div class="input-box">
         <input type="text" placeholder="username" formControlName="username" />
+        <small *ngIf="registerForm.get('username').errors?.['checkUserName'] && registerForm.get('username').touched">*username is aleady exist</small>
         <button class="btn-gen-username" type="button">
           Create a Username
         </button>

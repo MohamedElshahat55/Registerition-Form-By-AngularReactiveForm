@@ -24,7 +24,10 @@ export class AppComponent {
         CustomValidation.noSpaceAllowed,
       ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      username: new FormControl(null),
+      username: new FormControl(null, [
+        Validators.required,
+        CustomValidation.checkUserName,
+      ]),
       dob: new FormControl(null),
       gender: new FormControl("male"),
       address: new FormGroup({
