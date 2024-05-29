@@ -13,6 +13,8 @@ export class CustomValidation {
   }
 }
 
+//? note) the async validator must returm promise or observable
+
 function userNameAllowed(username: string) {
   const takenUsers = ["Tarek", "Nour", "Hassan"];
   return new Promise((resolve, reject) => {

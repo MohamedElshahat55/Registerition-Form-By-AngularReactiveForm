@@ -12,6 +12,7 @@ export class AppComponent {
   //----------
   title = "template-driven-form";
   registerForm: FormGroup;
+  formData: any;
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -40,10 +41,27 @@ export class AppComponent {
       skills: new FormArray([new FormControl(null, [Validators.required])]),
       experiences: new FormArray([]),
     });
+
+    // this.registerForm.get("address").valueChanges.subscribe((val) => {
+    //   console.log(val);
+    // });
+
+    // this.registerForm.valueChanges.subscribe((val) => {
+    //   console.log(val);
+    // });
+
+    // this.registerForm.get("username").statusChanges.subscribe((status) => {
+    //   console.log(status);
+    // });
+
+    this.registerForm.get("firstName").statusChanges.subscribe((status) => {
+      console.log(status);
+    });
   }
 
   onSubmit() {
-    console.log(this.registerForm);
+    this.formData = this.registerForm.value;
+    this.registerForm.reset();
   }
 
   addSkills() {
